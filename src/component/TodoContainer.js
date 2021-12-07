@@ -1,5 +1,6 @@
 import React from "react";
-import TodosList from './TodoList'
+import TodoList from './TodoList'
+import InputTodo from './InputTodo'
 import Header from "./Header"
 class TodoContainer extends React.Component {
 state = {
@@ -19,15 +20,62 @@ state = {
       title: "Deploy to live server",
       completed: false
     }
-  ]
+  ],
+  currentid:4
  };
 
+ handleChange=(id)=>{
+   this.setState({
+    todos:this.state.todos.map(todo=>{
+      if(todo.id === id){
+        todo.completed = !todo.completed;
+
+      }
+      return todo;
+    })
+
+   });
+   console.log("clicked",id);
+
+ }
+delTodo = id => {
+this.setState({
+todos:[
+      ...this.state.todos.filter(todo=>{
+        return todo.id!==id;
+})
+]
+
+
+
+})
+};
+
+addTodoItem=title =>{
+  const newTodo ={
+    id:this.state.currentid,
+    title:title,
+    completed:false
+  };
+ 
+  this.setState({
+ 
+    todos:[...this.state.todos,newTodo]
+  });
+
+this.setState({
+currentid:this.state.currentid+1
+
+})
+
+};
 
   render() {
     return (
       <div>
         <Header/>
-  <TodosList todos={this.state.todos} />
+        <InputTodo addTodoProps={this.addTodoItem}/>
+  <TodoList todos={this.state.todos} handleChangeProps={this.handleChange} deleteTodoProps={this.delTodo} />
 
 
 
