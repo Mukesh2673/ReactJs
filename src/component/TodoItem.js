@@ -1,5 +1,12 @@
 import React from "react";
 import styles from "../TodoItem.module.css"
+const completedStyle={
+    fontStyle: "italic",
+    color: "#595959",
+    opacity: 0.4,
+    textDecoration: "line-through",
+}
+//add css module in reactjs
 class TodoItem extends React.Component{
     render(){
         return( 
@@ -12,7 +19,10 @@ class TodoItem extends React.Component{
             {this.props.todo.title}
             <button onClick={()=>this.props.deleteTodoProps(this.props.todo.id)}>
             Delete 
-            </button>    
+            </button> 
+            <span style={this.props.todo.completed ? completedStyle : null}>
+                    {this.props.todo.title}
+            </span>
             </li>
         )
     }
