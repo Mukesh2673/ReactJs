@@ -72,7 +72,10 @@ currentid:this.state.currentid+1
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <div className="inner">
+
+      
         <Header/>
         <InputTodo addTodoProps={this.addTodoItem}/>
   <TodoList todos={this.state.todos} handleChangeProps={this.handleChange} deleteTodoProps={this.delTodo} />
@@ -80,6 +83,7 @@ currentid:this.state.currentid+1
 
 
 
+      </div>
       </div>
     );
   }
